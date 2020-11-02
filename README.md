@@ -1,1 +1,1 @@
-# Spinning up Jenkins slave and master.
+# Spinning up Jenkins workers and master.
