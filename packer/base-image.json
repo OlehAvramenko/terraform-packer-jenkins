@@ -1,0 +1,42 @@
+{
+  "builders": [
+  {
+    "ami_name": "{{user `ami-name`}}",
+    "ami_regions": [
+      "us-east-1"
+    ],
+    "ena_support": "true",
+    "instance_type": "t3.micro",
+    "region": "us-east-1",
+    "vpc_id": "vpc_ID",
+    "subnet_id": "subnet_ID",
+    "source_ami_filter": {
+      "filters": {
+        "name": "ubuntu/images/*ubuntu-bionic-18.04-amd64-server-*",
+        "root-device-type": "ebs",
+        "virtualization-type": "hvm"
+      },
+      "most_recent": true,
+      "owners": [
+        "owner"
+      ]
+    },
+    "ssh_username": "ubuntu",
+    "tags": {
+      "Name": "{{user `ami-name`}}"
+    },
+    "type": "amazon-ebs"
+  }
+],
+"provisioners": [
+  {
+    "script": "install-packages.sh",
+    "type": "shell"
+  }
+],
+  "variables": {
+    "ami-name": "DEMO5-Jenkins",
+    "aws_access_key": "",
+    "aws_secret_key": ""
+  }
+}
